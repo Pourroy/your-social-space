@@ -63,3 +63,7 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+gem "tailwindcss-rails", "~> 4.1"
+gem "faker", "~> 3.5"
+gem "will_paginate", "~> 4.0"

@@ -7,3 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+user = User.where(:email => 'test@example.com').first_or_create(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
+50.times do
+  UserPost.create(content: Faker::Lorem.paragraph(sentence_count: 8), user_id: user.id)
+end

@@ -18,11 +18,22 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <div>
+      <% if user_signed_in? %>
+        <h4 class="ls-ico-user"> Olá <%= current_user.email %></h4>
+        <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+      <% else %>
+          <%= link_to 'Entrar', new_user_session_path, method: :get, class: "rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+      <% end %>
+    </div>
+    <main class="container mx-auto mt-28 px-5 flex">
+      <%= yield %>
+    </main>
   </body>
 </html>
